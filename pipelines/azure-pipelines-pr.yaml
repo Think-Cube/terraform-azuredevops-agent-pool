@@ -12,12 +12,12 @@ variables:
   - name: TERRAFORM_SEC_VERSION
     value: "v1.26.0"
   - name: GITHUB_REPO
-    value: "Think-Cube/terraform-azure-devops-agent-pool"
+    value: "Think-Cube/terraform-azuredevops-agent-pool"
   - group: GITHUB-PAT-TOKEN
   - name: VM_IMAGE
     value: ubuntu-latest
   - name: MODULE_NAME
-    value: "terraform-azure-devops-agent-pool"    
+    value: "terraform-azuredevops-agent-pool"    
 pool:
   vmImage: $(VM_IMAGE)
 stages:
@@ -70,7 +70,7 @@ stages:
               git commit -m "Update README.md with module documentation"
               
               # Set remote URL with authentication token
-              git remote set-url origin https://$(GITHUB_TOKEN)@github.com/Think-Cube/terraform-azure-devops-agent-pool.git
+              git remote set-url origin https://$(GITHUB_TOKEN)@github.com/Think-Cube/terraform-azuredevops-agent-pool.git
 
               # Pull the latest changes to avoid conflicts (source branch of the PR)
               git pull origin $(System.PullRequest.SourceBranch) --rebase
