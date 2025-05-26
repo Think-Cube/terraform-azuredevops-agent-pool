@@ -19,14 +19,14 @@ variables:
   - name: TERRAFORM_SEC_VERSION
     value: "v1.26.0"
   - name: GITHUB_REPO
-    value: "Think-Cube/terraform-azure-devops-agent-pool"
+    value: "Think-Cube/terraform-azuredevops-agent-pool"
   - group: GITHUB-PAT-TOKEN
   - name: PUBLISH_MODULE
     value: ${{parameters.publish_module}}
   - name: VM_IMAGE
     value: ubuntu-latest
   - name: MODULE_NAME
-    value: "terraform-azure-devops-agent-pool"
+    value: "terraform-azuredevops-agent-pool"
   - name: MODULE_DESCRIPTION
     value: "Terraform module for azure devops agent pool"
 pool:
