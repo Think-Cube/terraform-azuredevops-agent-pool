@@ -3,13 +3,13 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.6.3 |
-| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | 1.9.0 |
+| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | 1.10.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azuredevops"></a> [azuredevops](#provider\_azuredevops) | 1.9.0 |
+| <a name="provider_azuredevops"></a> [azuredevops](#provider\_azuredevops) | 1.10.0 |
 
 ## Modules
 
@@ -19,13 +19,13 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azuredevops_agent_pool.main](https://registry.terraform.io/providers/microsoft/azuredevops/1.9.0/docs/resources/agent_pool) | resource |
+| [azuredevops_agent_pool.main](https://registry.terraform.io/providers/microsoft/azuredevops/1.10.0/docs/resources/agent_pool) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_azuredevops_agent_pools"></a> [azuredevops\_agent\_pools](#input\_azuredevops\_agent\_pools) | A map defining the Azure DevOps agent pools to be created. Each entry should include:<br>  - `name`: The name of the agent pool.<br>  - `auto_provision`: Whether the pool should automatically provision agents.<br>  - `pool_type`: The type of the agent pool (e.g., 'automation' or 'deployment'). | <pre>map(object({<br>    name           = string<br>    auto_provision = bool<br>    pool_type      = string<br>  }))</pre> | <pre>{<br>  "default_pool": {<br>    "auto_provision": true,<br>    "name": "DefaultPool",<br>    "pool_type": "automation"<br>  }<br>}</pre> | no |
+| <a name="input_azuredevops_agent_pools"></a> [azuredevops\_agent\_pools](#input\_azuredevops\_agent\_pools) | A map defining the Azure DevOps agent pools to be created. Each entry should include:<br/>  - `name`: The name of the agent pool.<br/>  - `auto_provision`: Whether the pool should automatically provision agents.<br/>  - `pool_type`: The type of the agent pool (e.g., 'automation' or 'deployment'). | <pre>map(object({<br/>    name           = string<br/>    auto_provision = bool<br/>    pool_type      = string<br/>  }))</pre> | <pre>{<br/>  "default_pool": {<br/>    "auto_provision": true,<br/>    "name": "DefaultPool",<br/>    "pool_type": "automation"<br/>  }<br/>}</pre> | no |
 
 ## Outputs
 
