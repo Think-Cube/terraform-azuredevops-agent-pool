@@ -1,15 +1,37 @@
+# Terraform Module — Azure DevOps Agent Pool
+
+Provisions an `azuredevops_agent_pool` and optionally creates `azuredevops_agent_queue` entries in one or more projects.
+
+## Usage
+
+```hcl
+module "agent_pool" {
+  source = "github.com/Think-Cube/terraform-azuredevops-agent-pool?ref=v1.0.0"
+
+  name         = "my-agent-pool"
+  auto_update  = true
+  auto_provision = false
+  pool_type    = "automation"
+
+  project_ids = [
+    "00000000-1111-2222-3333-444444444444"
+  ]
+}
+```
+
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.6.3 |
-| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | 1.13.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
+| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | ~> 1.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azuredevops"></a> [azuredevops](#provider\_azuredevops) | 1.13.0 |
+| <a name="provider_azuredevops"></a> [azuredevops](#provider\_azuredevops) | ~> 1.0 |
 
 ## Modules
 
@@ -19,18 +41,26 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azuredevops_agent_pool.main](https://registry.terraform.io/providers/microsoft/azuredevops/1.13.0/docs/resources/agent_pool) | resource |
+| [azuredevops_agent_pool.main](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/agent_pool) | resource |
+| [azuredevops_agent_queue.main](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/agent_queue) | resource |
+| [azuredevops_pipeline_authorization.main](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/pipeline_authorization) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_azuredevops_agent_pools"></a> [azuredevops\_agent\_pools](#input\_azuredevops\_agent\_pools) | A map defining the Azure DevOps agent pools to be created. Each entry should include:<br/>  - `name`: The name of the agent pool.<br/>  - `auto_provision`: Whether the pool should automatically provision agents.<br/>  - `pool_type`: The type of the agent pool (e.g., 'automation' or 'deployment'). | <pre>map(object({<br/>    name           = string<br/>    auto_provision = bool<br/>    pool_type      = string<br/>  }))</pre> | <pre>{<br/>  "default_pool": {<br/>    "auto_provision": true,<br/>    "name": "DefaultPool",<br/>    "pool_type": "automation"<br/>  }<br/>}</pre> | no |
+| <a name="input_authorization_pipelines"></a> [authorization\_pipelines](#input\_authorization\_pipelines) | List of pipeline IDs to authorize for the agent queues. | `list(string)` | `[]` | no |
+| <a name="input_auto_provision"></a> [auto\_provision](#input\_auto\_provision) | Whether the agent pool should automatically provision agents in every project. | `bool` | `false` | no |
+| <a name="input_auto_update"></a> [auto\_update](#input\_auto\_update) | Whether agents in this pool should receive automatic updates. | `bool` | `true` | no |
+| <a name="input_name"></a> [name](#input\_name) | The name of the agent pool. | `string` | n/a | yes |
+| <a name="input_pool_type"></a> [pool\_type](#input\_pool\_type) | The type of the agent pool. Valid values are 'automation' or 'deployment'. | `string` | `"automation"` | no |
+| <a name="input_project_ids"></a> [project\_ids](#input\_project\_ids) | List of project IDs to create agent queues in. | `list(string)` | `[]` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_agent_pool_auto_provision_flags"></a> [agent\_pool\_auto\_provision\_flags](#output\_agent\_pool\_auto\_provision\_flags) | Boolean flags indicating whether auto-provisioning is enabled for each created agent pool. |
-| <a name="output_agent_pool_ids"></a> [agent\_pool\_ids](#output\_agent\_pool\_ids) | Unique identifiers (IDs) of the Azure DevOps agent pools created by this module. |
-| <a name="output_agent_pool_names"></a> [agent\_pool\_names](#output\_agent\_pool\_names) | List of names for the Azure DevOps agent pools provisioned by this module. |
+| <a name="output_agent_pool_id"></a> [agent\_pool\_id](#output\_agent\_pool\_id) | The ID of the created Azure DevOps agent pool. |
+| <a name="output_agent_pool_name"></a> [agent\_pool\_name](#output\_agent\_pool\_name) | The name of the created Azure DevOps agent pool. |
+| <a name="output_queue_ids"></a> [queue\_ids](#output\_queue\_ids) | Map of project\_id to agent queue ID for each project queue created. |
+<!-- END_TF_DOCS -->

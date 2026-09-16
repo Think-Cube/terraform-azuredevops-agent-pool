@@ -1,22 +1,39 @@
-variable "azuredevops_agent_pools" {
-  type = map(object({
-    name           = string
-    auto_provision = bool
-    pool_type      = string
-  }))
+variable "name" {
+  description = "The name of the agent pool."
+  type        = string
+}
 
-  description = <<DESC
-A map defining the Azure DevOps agent pools to be created. Each entry should include:
-  - `name`: The name of the agent pool.
-  - `auto_provision`: Whether the pool should automatically provision agents.
-  - `pool_type`: The type of the agent pool (e.g., 'automation' or 'deployment').
-DESC
+variable "auto_provision" {
+  description = "Whether the agent pool should automatically provision agents in every project."
+  type        = bool
+  default     = false
+}
 
-  default = {
-    default_pool = {
-      name           = "DefaultPool"
-      auto_provision = true
-      pool_type      = "automation"
-    }
+variable "auto_update" {
+  description = "Whether agents in this pool should receive automatic updates."
+  type        = bool
+  default     = true
+}
+
+variable "pool_type" {
+  description = "The type of the agent pool. Valid values are 'automation' or 'deployment'."
+  type        = string
+  default     = "automation"
+
+  validation {
+    condition     = contains(["automation", "deployment"], var.pool_type)
+    error_message = "pool_type must be either 'automation' or 'deployment'."
   }
+}
+
+variable "project_ids" {
+  description = "List of project IDs to create agent queues in."
+  type        = list(string)
+  default     = []
+}
+
+variable "authorization_pipelines" {
+  description = "List of pipeline IDs to authorize for the agent queues."
+  type        = list(string)
+  default     = []
 }
