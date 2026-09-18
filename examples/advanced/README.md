@@ -1,6 +1,6 @@
-# Example: Basic — Azure DevOps Agent Pool
+# Example: Advanced — Azure DevOps Agent Pool
 
-Provisions a self-hosted agent pool and registers it in a single Azure DevOps project.
+Automation pool provisioned in two projects with explicit pipeline authorization.
 
 ```hcl
 module "agent_pool" {
@@ -12,7 +12,13 @@ module "agent_pool" {
   auto_provision = false
 
   project_ids = [
-    "00000000-1111-2222-3333-444444444444"
+    "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+    "11111111-2222-3333-4444-555555555555",
+  ]
+
+  authorization_pipelines = [
+    "101",
+    "102",
   ]
 }
 ```
