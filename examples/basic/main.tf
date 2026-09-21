@@ -1,5 +1,5 @@
 module "agent_pool" {
-  source = "github.com/Think-Cube/terraform-azuredevops-agent-pool?ref=v1.0.0"
+  source = "../.."
 
   name           = "pool-myapp-prod"
   pool_type      = "automation"
