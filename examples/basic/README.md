@@ -1,10 +1,13 @@
-# Example: Basic — Azure DevOps Agent Pool
+<!-- BEGIN_TF_DOCS -->
+# Example: Basic — Azuredevops Agent Pool
 
-Provisions a self-hosted agent pool and registers it in a single Azure DevOps project.
+Provisions an Azure DevOps Agent Pool and optional agent queues in projects. Minimal example using required inputs only.
+
+## Usage
 
 ```hcl
 module "agent_pool" {
-  source = "github.com/Think-Cube/terraform-azuredevops-agent-pool?ref=v1.0.0"
+  source = "../.."
 
   name           = "pool-myapp-prod"
   pool_type      = "automation"
@@ -17,7 +20,6 @@ module "agent_pool" {
 }
 ```
 
-<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -25,25 +27,9 @@ module "agent_pool" {
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
 | <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | ~> 1.0 |
 
-## Providers
-
-No providers.
-
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_agent_pool"></a> [agent\_pool](#module\_agent\_pool) | github.com/Think-Cube/terraform-azuredevops-agent-pool | v1.0.0 |
-
-## Resources
-
-No resources.
-
-## Inputs
-
-No inputs.
-
-## Outputs
-
-No outputs.
+| <a name="module_agent_pool"></a> [agent\_pool](#module\_agent\_pool) | ../.. | n/a |
 <!-- END_TF_DOCS -->
